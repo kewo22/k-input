@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "k-input-lib": [
+        "dist/k-input-lib"
+      ],
+      "k-input-lib/*": [
+        "dist/k-input-lib/*"
+      ]
+    }
   }
 }

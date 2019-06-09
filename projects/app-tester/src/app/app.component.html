@@ -1,0 +1,30 @@
+<form
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+>
+
+    <k-input-t-input
+        [type]="'text'"
+        [parentForm]="registerForm"
+        [id]="'one'"
+        [label]="'First Name'"
+        [placeHolder]="'Enter First Name'"
+        [formCtrlName]="'firstName'"
+    ></k-input-t-input>
+    
+    <k-input-t-input
+        [type]="'text'"
+        [parentForm]="registerForm"
+        [id]="'one'"
+        [label]="'First Name'"
+        [placeHolder]="'Enter First Name'"
+        [formCtrlName]="'lastName'"
+    ></k-input-t-input>
+
+    <button type="submit">Save</button>
+
+</form>
+
+<pre>
+    <!-- {{registerForm['controls'].fir | json}} -->
+</pre>

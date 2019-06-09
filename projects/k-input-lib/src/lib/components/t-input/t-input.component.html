@@ -1,0 +1,17 @@
+<!-- <div> -->
+<label
+    for="email"
+    [formGroup]="parentForm"
+    [attr.for]="id"
+>
+    <span>{{label}}</span>
+    <input
+        type="{{type}}"
+        id="{{id}}"
+        name="email"
+        [formControlName]="formControlName"
+        #input
+        placeholder="{{placeHolder}}"
+    >
+</label>
+<!-- </div> -->
