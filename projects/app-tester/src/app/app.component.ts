@@ -9,13 +9,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AppComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-
+  isDisabled: boolean = true;
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required]
+      firstName: ['', Validators.compose([Validators.required, Validators.email])],
+      lastName: ['', Validators.compose([Validators.email, Validators.required])]
     });
   }
 
@@ -32,6 +32,10 @@ export class AppComponent implements OnInit {
     // }
 
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+  }
+
+  test() {
+    this.isDisabled = !this.isDisabled;
   }
 
 }

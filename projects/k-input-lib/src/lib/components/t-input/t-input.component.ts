@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, forwardRef, ElementRef, ViewChild, AfterViewInit, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, forwardRef, ElementRef, ViewChild, AfterViewInit, OnChanges, Renderer2, SimpleChanges, SimpleChange } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl, FormGroup } from '@angular/forms';
 
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
@@ -13,7 +13,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   styleUrls: ['./t-input.component.css']
 })
 
-export class TInputComponent {
+export class TInputComponent implements OnChanges {
 
   // Input field type eg:text,password
   @Input() type: string = "";
@@ -30,6 +30,20 @@ export class TInputComponent {
   // formControlName input
   @Input() formCtrlName: string = "";
 
+  // displayType input
+  @Input() displayType: string = "block";
+
+  // displayType input
+  @Input() disabled: boolean = false;
+
+  private _disabled: boolean = false;
+
+  @Input('disabled')
+  set value(val: boolean) {
+    this._disabled = val;
+    this._disabled ? this.renderer.setAttribute(this.inputRef.nativeElement, 'disabled', "true") : this.renderer.removeAttribute(this.inputRef.nativeElement, 'disabled');
+  }
+
   //current form control input. helpful in validating and accessing form control
   // @Input() c: FormControl = new FormControl();
 
@@ -41,13 +55,13 @@ export class TInputComponent {
   // // errors for the form control will be stored in this array
   // errors: Array<any> = ['This field is required'];
 
-  // // get reference to the input element
-  // @ViewChild('input') inputRef: ElementRef;
+  // get reference to the input element
+  @ViewChild('input') inputRef: ElementRef;
 
   @Input() parentForm: FormGroup;
   formControlName: string = '';
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
     const foundFormControlName = Object.keys(this.parentForm.controls).find(d => {
@@ -55,12 +69,23 @@ export class TInputComponent {
     })
 
     if (foundFormControlName) this.formControlName = foundFormControlName;
+    this._disabled ? this.renderer.setAttribute(this.inputRef.nativeElement, 'disabled', "true") : this.renderer.removeAttribute(this.inputRef.nativeElement, 'disabled');
+
+    console.log(this.parentForm)
+    console.log(this.getValidators(this.parentForm.controls.lastName.errors))
   }
 
-  ngOnChanges() {
-
+  getValidators(errorObject) {
+    return Object.keys(errorObject);
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    // console.log(changes)
+  }
+
+  onFocusOut(): void {
+    
+  }
 
   // //Lifecycle hook. angular.io for more info
   // ngAfterViewInit() {

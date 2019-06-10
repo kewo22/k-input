@@ -1,17 +1,21 @@
 <!-- <div> -->
 <label
-    for="email"
+    for="{{id}}"
     [formGroup]="parentForm"
     [attr.for]="id"
+    [ngClass]="[displayType==='block' ? 'block' : 'inline']"
 >
     <span>{{label}}</span>
     <input
+        #input
         type="{{type}}"
         id="{{id}}"
-        name="email"
         [formControlName]="formControlName"
-        #input
         placeholder="{{placeHolder}}"
+        (blur)="onFocusOut()"
     >
+    <span>
+        
+    </span>
 </label>
 <!-- </div> -->

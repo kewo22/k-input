@@ -1,0 +1,47 @@
+label {
+  display: flex;
+  width: 200px;
+}
+
+label > input {
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  outline: none;
+}
+
+label > input:focus {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  outline: none;
+}
+
+label > input:disabled {
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+label > input:disabled {
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+/* ::placeholder {
+  color: red;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: red;
+}
+
+::-ms-input-placeholder {
+  color: red;
+} */
+
+label.block {
+  flex-direction: column;
+}
+
+label.inline {
+  flex-direction: row;
+}

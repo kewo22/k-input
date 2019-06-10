@@ -6,25 +6,26 @@
     <k-input-t-input
         [type]="'text'"
         [parentForm]="registerForm"
-        [id]="'one'"
+        [id]="'test'"
         [label]="'First Name'"
         [placeHolder]="'Enter First Name'"
         [formCtrlName]="'firstName'"
+        [displayType]="'block'"
+        [disabled]=isDisabled
     ></k-input-t-input>
-    
+
     <k-input-t-input
         [type]="'text'"
         [parentForm]="registerForm"
-        [id]="'one'"
+        [id]="'test1'"
         [label]="'First Name'"
-        [placeHolder]="'Enter First Name'"
+        [placeHolder]="'Enter Last Name'"
         [formCtrlName]="'lastName'"
+        [displayType]="'block'"
     ></k-input-t-input>
 
     <button type="submit">Save</button>
 
 </form>
 
-<pre>
-    <!-- {{registerForm['controls'].fir | json}} -->
-</pre>
+<button (click)="test()">toggle</button>
